@@ -1,0 +1,16 @@
+torch
+transformers==4.46.3
+sentence-transformers==3.3.1
+accelerate==1.1.1
+datasets==3.1.0
+sentencepiece
+protobuf
+scikit-learn
+numpy
+tqdm
+pypdf
+fastapi
+uvicorn[standard]
+python-multipart
+httpx
+pytest

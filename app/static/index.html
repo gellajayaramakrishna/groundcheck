@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GroundCheck</title>
+<style>
+  body { font-family: -apple-system, system-ui, sans-serif; max-width: 860px; margin: 32px auto; padding: 0 16px; color: #1d1d1f; }
+  h1 { margin-bottom: 4px; } p.sub { color: #666; margin-top: 0; }
+  label { display: block; font-weight: 600; margin: 14px 0 6px; }
+  input[type=text], textarea { width: 100%; box-sizing: border-box; padding: 10px; border: 1px solid #ccc; border-radius: 8px; font: inherit; }
+  textarea { height: 110px; }
+  button { margin-top: 16px; padding: 10px 22px; border: 0; border-radius: 8px; background: #1d1d1f; color: #fff; font: inherit; cursor: pointer; }
+  button:disabled { opacity: .5; }
+  .sent { padding: 10px 12px; border-radius: 8px; margin: 8px 0; cursor: pointer; }
+  .ok { background: #e7f6ec; border-left: 4px solid #1f9d55; }
+  .bad { background: #fdecec; border-left: 4px solid #d93025; }
+  .prob { float: right; font-size: 12px; color: #555; }
+  .ev { display: none; margin-top: 8px; font-size: 13px; color: #444; white-space: pre-wrap; border-top: 1px dashed #bbb; padding-top: 8px; }
+  .sent.open .ev { display: block; }
+  #summary { font-weight: 600; margin-top: 24px; }
+</style>
+</head>
+<body>
+<h1>GroundCheck</h1>
+<p class="sub">Checks every sentence of an AI answer against your PDF. Red = not supported by the document.</p>
+<form id="f">
+  <label>PDF</label><input type="file" name="pdf" accept="application/pdf" required>
+  <label>Question</label><input type="text" name="question" placeholder="What does the document say about...?">
+  <label>Answer to check (leave empty to let an LLM answer)</label><textarea name="answer"></textarea>
+  <button id="btn">Check</button>
+</form>
+<div id="summary"></div>
+<div id="out"></div>
+<script>
+const f = document.getElementById('f'), out = document.getElementById('out'), sum = document.getElementById('summary'), btn = document.getElementById('btn');
+f.onsubmit = async (e) => {
+  e.preventDefault(); btn.disabled = true; out.innerHTML = ''; sum.textContent = 'Checking...';
+  try {
+    const res = await fetch('/api/check', { method: 'POST', body: new FormData(f) });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.detail || 'Request failed');
+    sum.textContent = `${data.flagged} of ${data.total} sentences not supported by the PDF (click a sentence to see its evidence)`;
+    for (const s of data.sentences) {
+      const div = document.createElement('div');
+      div.className = 'sent ' + (s.supported ? 'ok' : 'bad');
+      const prob = document.createElement('span'); prob.className = 'prob';
+      prob.textContent = 'hallucination prob ' + s.hallucination_prob.toFixed(2);
+      const ev = document.createElement('div'); ev.className = 'ev'; ev.textContent = s.evidence;
+      div.append(prob, document.createTextNode(s.sentence), ev);
+      div.onclick = () => div.classList.toggle('open');
+      out.append(div);
+    }
+  } catch (err) { sum.textContent = 'Error: ' + err.message; }
+  btn.disabled = false;
+};
+</script>
+</body>
+</html>

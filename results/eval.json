@@ -1,0 +1,138 @@
+{
+  "ragtruth_sentence": {
+    "threshold": 0.68,
+    "n": 18977,
+    "positive_rate": 0.0825,
+    "precision": 0.6098,
+    "recall": 0.6296,
+    "f1": 0.6195,
+    "balanced_accuracy": 0.7967,
+    "roc_auc": 0.9127,
+    "pr_auc": 0.6481
+  },
+  "ragtruth_by_task": {
+    "Summary": {
+      "threshold": 0.68,
+      "n": 5007,
+      "positive_rate": 0.0517,
+      "precision": 0.4091,
+      "recall": 0.278,
+      "f1": 0.331,
+      "balanced_accuracy": 0.628,
+      "roc_auc": 0.8534,
+      "pr_auc": 0.2953
+    },
+    "Data2txt": {
+      "threshold": 0.68,
+      "n": 8230,
+      "positive_rate": 0.1137,
+      "precision": 0.661,
+      "recall": 0.7543,
+      "f1": 0.7046,
+      "balanced_accuracy": 0.8523,
+      "roc_auc": 0.9409,
+      "pr_auc": 0.7607
+    },
+    "QA": {
+      "threshold": 0.68,
+      "n": 5740,
+      "positive_rate": 0.0646,
+      "precision": 0.5576,
+      "recall": 0.5606,
+      "f1": 0.5591,
+      "balanced_accuracy": 0.765,
+      "roc_auc": 0.8822,
+      "pr_auc": 0.5128
+    }
+  },
+  "ragtruth_response": {
+    "threshold": 0.68,
+    "n": 2700,
+    "positive_rate": 0.3493,
+    "precision": 0.7537,
+    "recall": 0.7466,
+    "f1": 0.7501,
+    "balanced_accuracy": 0.8078,
+    "roc_auc": 0.8894,
+    "pr_auc": 0.837
+  },
+  "halubench": {
+    "threshold": 0.68,
+    "n": 1955,
+    "positive_rate": 0.5018,
+    "precision": 0.8504,
+    "recall": 0.4924,
+    "f1": 0.6236,
+    "balanced_accuracy": 0.7025,
+    "roc_auc": 0.7943,
+    "pr_auc": 0.8198
+  },
+  "halubench_by_source": {
+    "halueval": {
+      "threshold": 0.68,
+      "n": 1329,
+      "positive_rate": 0.5312,
+      "precision": 0.9563,
+      "recall": 0.4958,
+      "f1": 0.653,
+      "balanced_accuracy": 0.735,
+      "roc_auc": 0.8186,
+      "pr_auc": 0.8759
+    },
+    "covidQA": {
+      "threshold": 0.68,
+      "n": 140,
+      "positive_rate": 0.5143,
+      "precision": 0.9429,
+      "recall": 0.4583,
+      "f1": 0.6168,
+      "balanced_accuracy": 0.7145,
+      "roc_auc": 0.8631,
+      "pr_auc": 0.881
+    },
+    "pubmedQA": {
+      "threshold": 0.68,
+      "n": 142,
+      "positive_rate": 0.5,
+      "precision": 0.7292,
+      "recall": 0.493,
+      "f1": 0.5882,
+      "balanced_accuracy": 0.6549,
+      "roc_auc": 0.7225,
+      "pr_auc": 0.7275
+    },
+    "DROP": {
+      "threshold": 0.68,
+      "n": 110,
+      "positive_rate": 0.4273,
+      "precision": 0.381,
+      "recall": 0.1702,
+      "f1": 0.2353,
+      "balanced_accuracy": 0.4819,
+      "roc_auc": 0.529,
+      "pr_auc": 0.4672
+    },
+    "RAGTruth": {
+      "threshold": 0.68,
+      "n": 116,
+      "positive_rate": 0.2069,
+      "precision": 0.6538,
+      "recall": 0.7083,
+      "f1": 0.68,
+      "balanced_accuracy": 0.8053,
+      "roc_auc": 0.9203,
+      "pr_auc": 0.7896
+    },
+    "FinanceBench": {
+      "threshold": 0.68,
+      "n": 118,
+      "positive_rate": 0.5169,
+      "precision": 0.5556,
+      "recall": 0.6557,
+      "f1": 0.6015,
+      "balanced_accuracy": 0.5472,
+      "roc_auc": 0.5705,
+      "pr_auc": 0.6038
+    }
+  }
+}
